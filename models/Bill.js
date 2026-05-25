@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema({
   priceWithoutGst: Number,
   totalPrice: Number,
 });
-
+ 
 const billSchema = new mongoose.Schema({
   invoiceNumber: {
     type: String,

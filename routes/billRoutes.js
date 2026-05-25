@@ -22,11 +22,11 @@ router.post('/create', authMiddleware, async (req, res) => {
     }
     
     const invoiceNumber = await generateInvoiceNumber();
-    const bill = new Bill({
+    const bill = new Bill({ 
       ...req.body,
       invoiceNumber,
       userId: req.userId,
-      businessId: business._id,
+      businessId: business._id, 
     });
     
     await bill.save();

@@ -22,9 +22,9 @@ router.post('/signup', async (req, res) => {
       password
     });
 
-    const token = jwt.sign(
+    const token = jwt.sign( 
       { id: user._id },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET, 
       { expiresIn: '7d' }
     );
 

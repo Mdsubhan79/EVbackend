@@ -24,7 +24,7 @@ const businessSchema = new mongoose.Schema({
   whatsappNumber: String,
   logo: String,
   gstinNumber: String,
-  gstRate: {
+  gstRate: { 
     type: Number,
     default: 0,
   },
