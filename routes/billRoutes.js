@@ -87,7 +87,10 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 
   try {
 
-    const deletedBill = await Bill.findByIdAndDelete(req.params.id);
+    const deletedBill = await Bill.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.userId
+    });
 
     if (!deletedBill) {
       return res.status(404).json({
@@ -101,6 +104,8 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log(error);
 
     res.status(500).json({
       message: 'Server Error'
