@@ -82,7 +82,33 @@ router.put('/:id', authMiddleware, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+router.delete('/:id', auth, async (req, res) => {
 
+  try {
+
+    const bill = await Bill.findById(req.params.id);
+
+    if (!bill) {
+      return res.status(404).json({
+        message: 'Bill not found'
+      });
+    }
+
+    await Bill.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: 'Bill deleted successfully'
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: 'Server error'
+    });
+
+  }
+
+});
 // Generate PDF
 router.post('/:id/pdf', authMiddleware, async (req, res) => {
   try {
